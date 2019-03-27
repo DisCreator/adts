@@ -43,18 +43,19 @@ void List::insert(int val, int k)
 	else
 	 {  
 	
-	  Node* tmpPtr = frontPtr;
-	  int loc = 1; 
-	  
-	    while( loc != k-1) //get pointer to (k-1)th node
-	     {
-		tmpPtr = tmpPtr->link;
-		loc++;
-	     }
-	
-	  newPtr->link = tmpPtr->link;
-	  tmpPtr->link = newPtr;  
-        }//end else
+		  Node* tmpPtr = frontPtr;
+		  int loc = 1; 
+		  
+		  while( loc != k-1) //get pointer to (k-1)th node
+		  {
+			tmpPtr = tmpPtr->link;
+			loc++;
+		  }
+		
+		  newPtr->link = tmpPtr->link;
+		  tmpPtr->link = newPtr;  
+		  
+      }//end else
 
      num_elements++;
  }
@@ -77,10 +78,10 @@ void List::remove(int k)
 		
 	    int loc = 1;
             
-            while(loc != k-1)//get pointer to (k-1)th node
+        while(loc != k-1)//get pointer to (k-1)th node
 	    {
-	       tmpPtr = tmpPtr->link;
-		loc++;
+	        tmpPtr = tmpPtr->link;
+			loc++;
 	    }
 	
 	    delPtr = tmpPtr->link;
@@ -93,3 +94,33 @@ void List::remove(int k)
 	
 	//Implementations of missing operations
 	
+int List::getAt(int k)
+{
+	if (k < 1 or k > num_elements)//if the location is invalid 
+	     throw out_of_range("List::remove(" +to_string(k)+") failed. (valid indices are 1 to "+to_string(num_elements)+")");//throw an "out_of_range" exception 
+
+	if(k == 1)
+	{
+		return frontPtr->data;
+	}
+	else
+	{
+		Node* tmpPtr = frontPtr;
+		int loc = 1;
+		
+		while( loc != k-1) //get pointer to (k-1)th node
+		{
+			tmpPtr = tmpPtr->link;
+			loc++;
+		}
+		
+		Node* displayPtr = tmpPtr->link;
+		return displayPtr->data;
+	}
+}
+
+void List::clear()
+{
+	while (size() != 0)
+	remove(1);
+}

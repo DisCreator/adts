@@ -19,10 +19,14 @@ class List //begin List definition
      void remove(int k);//remove element at location k
      int size();//return the number of elements in the List
      
-     
      /** MISSING OPERATIONS */
      //... fill in ....
-
+     
+	int getAt(int k);//view the k-th element
+	void clear();//make the ADT empty
+	
+	
+	
 };//end List definition
 
 #endif
